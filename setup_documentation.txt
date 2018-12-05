@@ -1,0 +1,10 @@
+Environment Setup:
+
+1. Create the root path for the project, in this case it is under C:/users/username/desktop/<name_of_project>
+	a. cd towards that folder and create your virtual environment, use the command: `python -m venv venv`
+	b. activate your venv by running, venv/scripts/activate
+	
+2. Create a new requirements.txt and add your dependencies ex: Django==2.0.6
+	a. run: pip install -r requirements.txt
+	
+[ Follow notebook's TODO list and recreate the environment ]

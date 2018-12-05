@@ -1,0 +1,8 @@
+Django==2.0.6
+psycopg2==2.7.3.2
+python-decouple==3.1
+requests==2.18.0
+whitenoise==2.0.6
+pandas==0.22.0
+gunicorn==19.6.0
+boto3==1.5.36
