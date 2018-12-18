@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+<!-- Adherring to Bootsrap grid's system, this page is for user registration -->
+
+{% block content %}
+  <div class="containerr">
+	<div class="row justify-content-center">
+	  <div class="col">
+	    <h2>Register</h2>
+		<form method="post">
+		  {% csrf_token %}
+	      {{ form.as_p }}
+	      <button type="submit">Sign up</button>
+	    </form>
+	  </div>
+	</div>
+  </div>
+{% endblock %}
+	

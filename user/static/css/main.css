@@ -1,0 +1,19 @@
+html, body {
+	font-family: "Georgia";
+}
+
+.navbar-brand, .nav-link {
+	color: white;
+}
+
+nav {
+	box-shadow: 3px 0px 5px 6px #ccc;
+}
+
+.col {
+	margin: 20px;
+}
+
+p {
+ 
+}
