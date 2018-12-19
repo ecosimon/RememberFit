@@ -12,7 +12,7 @@ from django.shortcuts import render, redirect
    AJAX/Graphs will be implemented soon.
 """
 
-#login_required decorator requires view to be authenticated
+# login_required decorator requires view to be authenticated
 @login_required(login_url="login/")
 def home(request):
     """
@@ -26,8 +26,7 @@ def register(request):
     This function adheres to Django's built-in registration form. 
     If a POST method is submitted, the POST will be appended to the form 
     where the form validation occurs in form.is_valid().
-    If the information is passed then the user will be logged in and redirected 
-    to the homepage.
+    After registration, user will be redirected to Login page to login.
 	Otherwise, form errors will be prompted and a empty form is sent back.
     """
     if request.method == 'POST':
@@ -36,9 +35,8 @@ def register(request):
             form.save()
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('rpassword')
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
-            return redirect('home')
+            return redirect('login')
     else:
         form = UserCreationForm()
     return render(request, 'signup.html', {'form': form})
+	

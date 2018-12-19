@@ -17,3 +17,23 @@ class LoginForm(AuthenticationForm):
     password = forms.CharField(label="Password", max_length=30,
                                widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'password'}))
 							  
+# class SignUpForm(UserCreationForm):
+    # """
+    # A Sign up form extending Django's built-in UserCreationForm.
+    # """
+    # first_name = forms.CharField(max_length=30, required=False, help_text='Optional')
+    # last_name = forms.CharField(max_length=30, required=False, help_text='Optional')
+    # email = forms.EmailField(max_length=254, help_text="This is required.")
+	
+    # class Meta:
+        # model = User
+        # fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2',)
+		
+    # def save(self, commit=True):
+        # user = super(SignUpForm, self).save(commit=False)
+        # user.first_name = self.cleaned_data['first_name']
+        # user.last_name = self.cleaned_data['last_name']
+        # user.email = self.cleaned_data['email']
+        # if commit:
+            # user.save()
+        # return user

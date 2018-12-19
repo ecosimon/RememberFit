@@ -18,7 +18,8 @@ from django.urls import path
 from django.conf.urls import include, url
 from django.contrib.auth import views as auth_views
 from user.forms import LoginForm
-from user import views as user_views
+from user import views
+
 
 """
    Project's URL module. Houses all endpoints and includes the App's url module as well.
@@ -29,5 +30,5 @@ urlpatterns = [
     url(r'', include('user.urls')),
     url(r'^login/$', auth_views.login, {'authentication_form': LoginForm}, name='login'),
     url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
-    url(r'^register/$', user_views.register, name='sign-up'),
+    url(r'^register/$', views.register, name='sign-up'),
 ]
