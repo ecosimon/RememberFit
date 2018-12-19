@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load staticfiles %}
 <!-- The meat of the project. This html file holds the information for my users to learn and test from.-->
 <!-- Line and Pie graphs are in the works. More research is required. -->
 
@@ -61,25 +61,63 @@
 	  <div class="col-8">
 	    <div class="jumbotron">
 		  <div>
-			<p class="text-center">Result: <span id="val"></span></p></br>
-			<h6>Maintenance</h6>
-			<p>The resulting value means that you must eat this amount in order to maintain your current weight.</p></br>
-			<h6>Rules of weight gain/loss</h6>
+			<p class="text-center" style="font-size: 24px;">Result: <span id="val"></span></p></br>
+			<h5><u>Maintenance</u></h5>
+			<p>The resulting value means that you must eat this amount in order to maintain your current weight.</p>
+			<h5><u>Rules of weight gain/loss</u></h5>
 			<p>In order to gain/loss you must understand that if you increase +250 to your current diet and you consistently 
 			eat that amount for the ENTIRE week, that means you would gain .5 lbs on completing the week. This applies in the 
 			reverse for loss, -250 for .5 lbs.</br>
 			It is common for most athletes to inc/dec by 250, but if your goal is to put on/off weight quicker than multiplying 
-			that inc/dec by 2x is the way to go. </p>
+			that inc/dec by 2x is the way to go.</br>
+			<h5><u>How do I know when to inc/dec?</u></h5>
+			I would suggest inc/dec bi-weekly, but the key is to be CONSISTENT with your calories.
+			</p>
 		  <div>
 		  <div class="text-center">
-			<h3>Line graph in progress</h3>
+			<h3>Line chart(Work In Progress)</h3>
+			<canvas id="chart" width="400" height="200"></canvas>
 		  </div>
 		</div>
 	  </div>
 	</div>
   </div>
-  
   <script>
+	$(window).on("load", function() {
+		var ctx = document.getElementById("chart").getContext("2d");
+			var myChart = new Chart(ctx, {
+				type: 'line',
+				data: {
+					labels: ["Week 0", "Week 1", "Week 2", "Week 3", "Week 4", "Week 5", "Week 6"],
+					datasets: [
+						{
+							label: "Gain .5lb per week",
+							data: [],
+							borderColor: "Navy",
+							fill: false
+						}, {
+							label: "Gain 1lb per week",
+							data: [],
+							borderColor: "Blue",
+							fill: false
+						}, {
+							label: "Lose .5lb per week",
+							data: [],
+							borderColor: "OrangeRed",
+							fill: false
+						}, {
+							label: "Lose 1lb per week",
+							data: [],
+							borderColor: "Red",
+							fill: false
+						}
+					]
+				}
+		  });
+		
+	});
+	
+	
 	$("#bmr-btn").click(function(e){
 		e.preventDefault();
 		
@@ -90,6 +128,11 @@
 		var selected_activity = document.getElementById("act");
 		
 		var res_placeholder = document.getElementById("val");
+		var chart_number = null;
+		var lightGain = [];
+		var heavyGain = [];
+		var lightLoss = [];
+		var heavyLoss = [];
 		
 		function calculate(){
 			var result = 0;
@@ -99,12 +142,87 @@
 				console.log(Math.round(result));
 				
 				res_placeholder.append(Math.round(result));
+				chart_number = Math.round(result);
+			} else {
+				result = (655 + (4.35*w.value) + (4.7*h.value) - (4.7*a.value))
+				result = result*(selected_activity.options[selected_activity.selectedIndex].value)
+				console.log(Math.round(result));
+				
+				res_placeholder.append(Math.round(result));
+				chart_number = Math.round(result);
 			}
 		}
 		
+		function calculate_lists() {
+			for (i=0; i<7; i++) {
+				if(i == 0) {
+					lightGain[i] = chart_number + 250;
+					heavyGain[i] = chart_number + 500;
+					lightLoss[i] = chart_number - 250;
+					heavyLoss[i] = chart_number - 500;
+				} else if (i%2 == 0) {
+					lightGain[i] = chart_number + 300;
+					heavyGain[i] = chart_number + 550;
+					lightLoss[i] = chart_number - 300;
+					heavyLoss[i] = chart_number - 550;
+				} else {
+					lightGain[i] = chart_number + 250;
+					heavyGain[i] = chart_number + 500;
+					lightLoss[i] = chart_number - 250;
+					heavyLoss[i] = chart_number - 500;
+				}
+			}
+		}
+		
+		function make_chart() {
+			if (myChart) {
+				myChart.destroy();
+				console.log("poop");
+			}
+			var ctx = document.getElementById("chart").getContext("2d");
+			var myChart = new Chart(ctx, {
+				type: 'line',
+				data: {
+					labels: ["Week 0", "Week 1", "Week 2", "Week 3", "Week 4", "Week 5", "Week 6"],
+					datasets: [
+						{
+							label: "Gain .5lb per week",
+							data: lightGain,
+							borderColor: "Navy",
+							fill: false
+						}, {
+							label: "Gain 1lb per week",
+							data: heavyGain,
+							borderColor: "Blue",
+							fill: false
+						}, {
+							label: "Lose .5lb per week",
+							data: lightLoss,
+							borderColor: "OrangeRed",
+							fill: false
+						}, {
+							label: "Lose 1lb per week",
+							data: heavyLoss,
+							borderColor: "Red",
+							fill: false
+						}
+					]
+				},
+				options: {
+					title: {
+						display: true,
+						text: "7 Week Schedule"
+					}
+				}
+			});
+		}
+		
 		calculate();
+		calculate_lists();
+		make_chart();
 	});
   
+	
   
   </script>
 {% endblock %}

@@ -4,6 +4,9 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 
+from django.views.generic import TemplateView
+from chartjs.views.lines import BaseLineChartView
+
 """
    Documentation for user/views.py as follows:
    
@@ -40,3 +43,19 @@ def register(request):
         form = UserCreationForm()
     return render(request, 'signup.html', {'form': form})
 	
+# work in progress
+# class LineChartJSONView(BaseLineChartView):
+    # def get_labels(self):
+        # return ["January", "February", "March", "April", "May", "June", "july"]
+		
+    # def get_providers(self):
+        # return ["Central", "Eastside", "Westside"]
+
+    # def get_data(self):
+        # return [[75, 44, 92, 11, 44, 95, 35],
+                # [41, 92, 18, 3, 73, 87, 92],
+                # [87, 21, 94, 3, 90, 13, 65]]
+
+				
+# line_chart = TemplateView.as_view(template_name='home.html')
+# line_chart_json = LineChartJSONView.as_view()

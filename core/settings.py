@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'graphdata',
     'food',
     'user',
+    'chartjs',
 ]
 
 MIDDLEWARE = [
