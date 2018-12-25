@@ -129,6 +129,11 @@
 		
 		var res_placeholder = document.getElementById("val");
 		var chart_number = null;
+		var lg_res = null;
+		var hg_res = null;
+		var ll_res = null;
+		var hl_res = null;
+		
 		var lightGain = [];
 		var heavyGain = [];
 		var lightLoss = [];
@@ -154,22 +159,35 @@
 		}
 		
 		function calculate_lists() {
+			lg_res = chart_number;
+			hg_res = chart_number;
+			ll_res = chart_number;
+			hl_res = chart_number;
+			
 			for (i=0; i<7; i++) {
 				if(i == 0) {
-					lightGain[i] = chart_number + 250;
-					heavyGain[i] = chart_number + 500;
-					lightLoss[i] = chart_number - 250;
-					heavyLoss[i] = chart_number - 500;
+					lg_res += 250;
+					hg_res += 500;
+					ll_res -= 250;
+					hl_res -= 500;
+					lightGain[i] = lg_res;
+					heavyGain[i] = hg_res;
+					lightLoss[i] = ll_res;
+					heavyLoss[i] = hl_res;
 				} else if (i%2 == 0) {
-					lightGain[i] = chart_number + 300;
-					heavyGain[i] = chart_number + 550;
-					lightLoss[i] = chart_number - 300;
-					heavyLoss[i] = chart_number - 550;
+					lg_res += 100;
+					hg_res += 200;
+					ll_res -= 100;
+					hl_res -= 200;
+					lightGain[i] = lg_res;
+					heavyGain[i] = hg_res;
+					lightLoss[i] = ll_res;
+					heavyLoss[i] = hl_res;
 				} else {
-					lightGain[i] = chart_number + 250;
-					heavyGain[i] = chart_number + 500;
-					lightLoss[i] = chart_number - 250;
-					heavyLoss[i] = chart_number - 500;
+					lightGain[i] = lg_res;
+					heavyGain[i] = hg_res;
+					lightLoss[i] = ll_res;
+					heavyLoss[i] = hl_res;
 				}
 			}
 		}
