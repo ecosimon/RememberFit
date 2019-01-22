@@ -3,9 +3,9 @@ from django.db import models
 
 class UserProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    height = models.DecimalField(decimal_places=2, 'Round height in inches to nearest two deciml places')
+    height = models.DecimalField(decimal_places=2,max_digits=5)
     age = models.PositiveIntegerField()
-    weight = models.DecimalField(decimal_places=2,'Round weight in inches to nearest two deciml places')
+    weight = models.DecimalField(decimal_places=2,max_digits=5)
 
     def __str__(self):
         return self.user
