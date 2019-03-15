@@ -13,6 +13,8 @@ from chartjs.views.lines import BaseLineChartView
    Function-Based-Views will be adhered throughout this project until further notice.
    
    AJAX/Graphs will be implemented soon.
+   
+   Comments for feature branch sake.
 """
 
 # login_required decorator requires view to be authenticated

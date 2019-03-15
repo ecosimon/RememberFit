@@ -127,11 +127,9 @@ LOGIN_REDIRECT_URL = '/'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_LOCATION = 'static'
+# STATICFILES_DIR = (
+	# os.path.join(BASE_DIR, 'staticfiles'),
 
-STATICFILES_DIR = (
-	os.path.join(BASE_DIR, 'staticfiles'),
-
-)
+# )
 
 #build out staticfiles for local development and create AWS static for deployment
