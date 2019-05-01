@@ -1,0 +1,14 @@
+Todo Agenda list:
+1. Revise and correct the graph that displays the change in calories.
+
+2. Recreate the login structure, make sure when the user logs in, the graph automatically takes the user 
+attributes and derive the correct predictions based on the users information.
+
+3. Features to add:
+	a. Search bar - AJAX/RESTful api, we need to create build commands to process .csv or pdf files into our database.
+	user Pandas to solve this issue.
+	b. Low AI for predicting the next increment of for ex: workout A/B and their explicit attained goals.(100 the following +5 = 105)
+	c. Need to research Calendar API, tag Norman for this.
+	d. Total calories checker, based on a total amount of calories and selected preffered foods the user selects. We can 
+	automatically distinguish which type of meals or foods the user 'liked' and remove suggested meals that the user 'dislikes'.
+	e. Possibly a human Man/Woman body chart displaying the current body 'look' the user have. Sensitive data will only be viewed by the user.
