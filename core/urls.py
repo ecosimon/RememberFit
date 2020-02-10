@@ -28,8 +28,8 @@ from user import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'', include('user.urls')),
-    url(r'SignUp/$', views.signup, name="signup"),
-    url(r'^login/$', auth_views.login, {'authentication_form': LoginForm}, name='login'),
-    url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
-    url(r'^register/$', views.register, name='sign-up'),
+    # url(r'SignUp/$', views.signup, name="signup"),
+    # url(r'^login/$', auth_views.login, {'authentication_form': LoginForm}, name='login'),
+    # url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
+    # url(r'^register/$', views.register, name='sign-up'),
 ]
