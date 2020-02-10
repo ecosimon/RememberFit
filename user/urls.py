@@ -1,6 +1,6 @@
 """
     user/urls.py
-	
+
     This Url module is from the User app.
 """
 
