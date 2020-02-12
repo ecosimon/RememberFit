@@ -1,6 +1,6 @@
 #user/forms.py
 from django.contrib.auth.models import User
-from django.models import UserProfile
+from .models import UserProfile
 from django import forms
 
 class UserForm(forms.ModelForm):
@@ -12,4 +12,4 @@ class UserForm(forms.ModelForm):
 class UserProfileForm(forms.ModelForm):
     class Meta():
         model = UserProfile
-        fields = ('username','height','age','weight')
+        fields = ('user','height','age','weight')
