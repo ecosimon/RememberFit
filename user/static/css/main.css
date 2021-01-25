@@ -2,6 +2,11 @@ html, body {
 	font-family: "Georgia";
 }
 
+.container-fluid {
+	padding-left: 40px;
+	padding-right: 40px;
+}
+
 .navbar-brand, .nav-link {
 	color: white;
 }
@@ -15,5 +20,5 @@ nav {
 }
 
 p {
- 
+
 }

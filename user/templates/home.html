@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load staticfiles %}
+{% load static %}
 <!-- The meat of the project. This html file holds the information for my users to learn and test from.-->
 <!-- Line and Pie graphs are in the works. More research is required. -->
 
@@ -8,18 +8,18 @@
     <div class="row">
 	  <div class="col">
 		<h2 class="text-center">Introduction</h2>
-		<p>Hello students/trainee's this app is meant to help answer all your questions 
-		when I am not available to answer them. Basically you need to input your height, weight, age and gender into 
-		the inputs and select the activity level that you work with submit. You should see a graph plot that shows you 
+		<p>Hello students/trainee's this app is meant to help answer all your questions
+		when I am not available to answer them. Basically you need to input your height, weight, age and gender into
+		the inputs and select the activity level that you work with submit. You should see a graph plot that shows you
 		how much to increase per week/month. Here are the formulas: </br>
 		<h4>Basal Metabolic Rate</h4>
-		BMR or Basal Metabolic Rate uses the input of height, weight, 
+		BMR or Basal Metabolic Rate uses the input of height, weight,
 		age and gender. Gender affects the calculations, it's obvious men and woman have different bodies.</br>
 		<h5><u>Example</u></h5>
 		Men: BMR = 66 + (6.23 x weight in lbs) + (12.7 x height in inches) - (6.8 x age in years)</br>
 		Women: BMR = 655 + (4.35 x weight in lbs) + (4.7 x height in inches) - (4.7 x age in years) </br></br>
 		<h4>Harris Benedict Equation</h4>
-		Harris Benedict Equation uses your BMR value and applies the level of your activity to determine your total 
+		Harris Benedict Equation uses your BMR value and applies the level of your activity to determine your total
 		daily intake.</br>
 		<h5><u>Example</u></h5>
 		Sedentary (Little to no exercise) BMR x 1.2</br>
@@ -65,10 +65,10 @@
 			<h5><u>Maintenance</u></h5>
 			<p>The resulting value means that you must eat this amount in order to maintain your current weight.</p>
 			<h5><u>Rules of weight gain/loss</u></h5>
-			<p>In order to gain/loss you must understand that if you increase +250 to your current diet and you consistently 
-			eat that amount for the ENTIRE week, that means you would gain .5 lbs on completing the week. This applies in the 
+			<p>In order to gain/loss you must understand that if you increase +250 to your current diet and you consistently
+			eat that amount for the ENTIRE week, that means you would gain .5 lbs on completing the week. This applies in the
 			reverse for loss, -250 for .5 lbs.</br>
-			It is common for most athletes to inc/dec by 250, but if your goal is to put on/off weight quicker than multiplying 
+			It is common for most athletes to inc/dec by 250, but if your goal is to put on/off weight quicker than multiplying
 			that inc/dec by 2x is the way to go.</br>
 			<h5><u>How do I know when to inc/dec?</u></h5>
 			I would suggest inc/dec bi-weekly, but the key is to be CONSISTENT with your calories.
@@ -114,56 +114,56 @@
 					]
 				}
 		  });
-		
+
 	});
-	
-	
+
+
 	$("#bmr-btn").click(function(e){
 		e.preventDefault();
-		
+
 		var h = document.querySelector(".height");
 		var w = document.querySelector(".weight");
 		var a = document.querySelector(".age");
 		var selected_gender = document.getElementById("gen");
 		var selected_activity = document.getElementById("act");
-		
+
 		var res_placeholder = document.getElementById("val");
 		var chart_number = null;
 		var lg_res = null;
 		var hg_res = null;
 		var ll_res = null;
 		var hl_res = null;
-		
+
 		var lightGain = [];
 		var heavyGain = [];
 		var lightLoss = [];
 		var heavyLoss = [];
-		
+
 		function calculate(){
 			var result = 0;
 			if (selected_gender.options[selected_gender.selectedIndex].value == 'M') {
 				result = (66 + (6.23*w.value) + (12.7*h.value) - (8.6*a.value))
 				result = result*(selected_activity.options[selected_activity.selectedIndex].value)
 				console.log(Math.round(result));
-				
+
 				res_placeholder.append(Math.round(result));
 				chart_number = Math.round(result);
 			} else {
 				result = (655 + (4.35*w.value) + (4.7*h.value) - (4.7*a.value))
 				result = result*(selected_activity.options[selected_activity.selectedIndex].value)
 				console.log(Math.round(result));
-				
+
 				res_placeholder.append(Math.round(result));
 				chart_number = Math.round(result);
 			}
 		}
-		
+
 		function calculate_lists() {
 			lg_res = chart_number;
 			hg_res = chart_number;
 			ll_res = chart_number;
 			hl_res = chart_number;
-			
+
 			for (i=0; i<7; i++) {
 				if(i == 0) {
 					lg_res += 250;
@@ -191,7 +191,7 @@
 				}
 			}
 		}
-		
+
 		function make_chart() {
 			if (myChart) {
 				myChart.destroy();
@@ -234,13 +234,13 @@
 				}
 			});
 		}
-		
+
 		calculate();
 		calculate_lists();
 		make_chart();
 	});
-  
-	
-  
+
+
+
   </script>
 {% endblock %}
